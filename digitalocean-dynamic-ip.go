@@ -13,8 +13,6 @@ import (
 	"net/url"
 	"os"
 	"strconv"
-
-	homedir "github.com/mitchellh/go-homedir"
 )
 
 func checkError(err error) {
@@ -120,7 +118,7 @@ func GetConfig() ClientConfig {
 	configFile := ""
 	if len(flag.Args()) == 0 {
 		var err error
-		configFile, err = homedir.Dir()
+		configFile, err = os.Getwd()
 		checkError(err)
 		configFile += "/.digitalocean-dynamic-ip.json"
 	} else {
